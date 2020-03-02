@@ -1,5 +1,39 @@
 extends layout
 
+block inHead
+  script(src="javascripts/face-api.min.js")
+
 block content
   h1= title
   p Welcome to #{title}
+  video#cam_observer(autoplay=true)
+  canvas#video_out
+  pre#output
+    span.angry
+      label angry:
+      span.value
+    br
+    span.disgusted
+      label disgusted:
+      span.value
+    br
+    span.fearful
+      label fearul:
+      span.value
+    br
+    span.happy
+      label happy:
+      span.value
+    br
+    span.neutral
+      label neutral:
+      span.value
+    br
+    span.sad
+      label sad:
+      span.value
+    br
+    span.surprised
+      label surprised:
+      span.value
+  script(src="javascripts/let-me-make-you-laugh.js", type="module")
