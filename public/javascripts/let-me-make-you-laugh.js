@@ -1,12 +1,14 @@
 import { FaceApi as detector } from './modules/detectors.js'
+import { default as laughDetector } from './modules/laughDetector.js'
 
 const video = document.getElementById('cam_observer'),
 	output = document.getElementById('output');
 
+laughDetector.init();
+
 video.addEventListener('play', e => {
 	console.log("webcam is streaming!");
 	detector.start(video, detections => {
-		console.log("got detections: ", JSON.stringify(detections, null, 2));
 		for (const type in detections) {
 			const lineElt = output.querySelector(`span.${type}`);
 			if (!lineElt) continue;
@@ -14,6 +16,8 @@ video.addEventListener('play', e => {
 			lineElt.classList.add(detections[type].class);
 			lineElt.querySelector('.value').innerText = detections[type].value;
 		}
+
+		laughDetector.onDetection(detections);
 	});
 });
 
