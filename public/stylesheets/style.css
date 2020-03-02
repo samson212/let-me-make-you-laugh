@@ -7,13 +7,55 @@ a {
   color: #00B7FF;
 }
 
+.video_container {
+	display: flex;
+}
 #cam_observer {
 	transform: scaleX(-1);
+}
+#output {
+	margin: 0 0 0 1em;
 }
 #output span {
   transition: opacity 0.1s;
 }
-.none { opacity: 0; }
-.trace { opacity: 0.2; }
-.some { opacity: 0.7; }
-.lots { opacity: 1; }
+#output .none  { opacity: 0; }
+#output .trace { opacity: 0.2; }
+#output .some  { opacity: 0.7; }
+#output .lots  { opacity: 1; }
+
+#video_out {
+	visibility: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+
+#modal {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0, 0.5);
+	display: none;
+}
+#modal.show {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#modal .content {
+	padding: 2em;
+	background: white;
+	border-radius: 1em;
+	display: flex;
+	flex-direction: column;
+}
+#modal h1 {
+	margin-top: 0;
+}
+#modal button {
+	cursor: pointer;
+}

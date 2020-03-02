@@ -16,7 +16,10 @@ function init(opts={}) {
 	thresholds.happy = opts['happyThreshold'];
 	thresholds.surprised = opts['surprisedThreshold'];
 
-	registerListener(e => console.log(`surpassed threshold for emotion '${e.tag}' with detection: ${JSON.stringify(e.detection)}`));
+	if (false) {
+		// this is for debugging
+		registerListener(e => console.log(`surpassed threshold for emotion '${e.tag}' with detection: ${JSON.stringify(e.detection)}`));
+	}
 }
 
 function registerDetection(detection) {
