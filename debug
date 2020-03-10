@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo service mongod restart
+env DEBUG=lmmyl:* npm start
