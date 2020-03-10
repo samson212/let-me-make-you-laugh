@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var debug = require('debug')('lmmyl:app');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -27,11 +28,13 @@ app.use('/detect', detectionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  debug("in 404 route??");
   next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
+  debug("in error handler, got err: ", err);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

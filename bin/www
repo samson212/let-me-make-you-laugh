@@ -7,7 +7,7 @@ require('dotenv').config();
  */
 
 var app = require('../app');
-var debug = require('debug')('let-me-make-you-laugh:server');
+var debug = require('debug')('lmmyl:server');
 var http = require('http');
 
 /**
