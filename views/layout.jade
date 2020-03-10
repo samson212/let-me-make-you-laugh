@@ -3,6 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    block styles
     script(src="javascripts/face-api.min.js")
-  body
+  body.loading
     block content

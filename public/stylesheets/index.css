@@ -1,0 +1,10 @@
+body.loading button#toggle_detection {
+	display: none;
+}
+button#toggle_detection .stop,
+body.detecting button#toggle_detection .start {
+	display: none;
+}
+body.detecting button#toggle_detection .stop {
+	display: inline;
+}

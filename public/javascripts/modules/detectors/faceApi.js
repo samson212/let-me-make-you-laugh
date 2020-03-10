@@ -2,7 +2,8 @@
 let shouldDetect = false,
 	apiIsPrimed = false,
 	faceApiOptions = false,
-	onDetection = detection => { console.log(JSON.stringify(detection, null, 2)) };
+	onDetection = detection => { console.log(JSON.stringify(detection, null, 2)) },
+	onReady = () => { console.log("face-api is ready!") };
 
 function faceRecognitionIsReady() {
 	return apiIsPrimed
@@ -13,8 +14,10 @@ function faceRecognitionIsReady() {
 
 function detectorIsDetecting() { return faceRecognitionIsReady() && shouldDetect; }
 
-async function init(options={}) {
+async function init(cb, options={}) {
 	console.log("initing face-api");
+
+	onReady = cb || onReady;
 
 	// default options
 	const defaultOptions = {
@@ -38,19 +41,20 @@ async function init(options={}) {
 
 	// prep the detector with a static image
 	if (options.prepWithStaticImage) {
-    	console.log("loading static image");
-    	let base_image = new Image();
-    	base_image.src = "/images/testFace.jpeg";
-    	base_image.onload = function() {
-        	console.log("priming face-api with static image");
-        	faceapi.detectSingleFace(base_image, faceApiOptions)
-        		.withFaceExpressions()
-        		.run()
+		console.log("loading static image");
+		let base_image = new Image();
+		base_image.src = "/images/testFace.jpeg";
+		base_image.onload = function() {
+			console.log("priming face-api with static image");
+			faceapi.detectSingleFace(base_image, faceApiOptions)
+				.withFaceExpressions()
+				.run()
 				.then(results => {
-        			apiIsPrimed = true;
-        			console.log("priming face-api yielded results: " + JSON.stringify(results, null, 2));
+					apiIsPrimed = true;
+					onReady();
+					console.log("priming face-api yielded results: " + JSON.stringify(results, null, 2));
 				});
-    	}
+		}
 	} else {
 		apiIsPrimed = true;
 	}

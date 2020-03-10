@@ -1,38 +1,47 @@
 extends layout
 
+block styles
+  link(rel='stylesheet', href='/stylesheets/index.css')
+
 block content
+  nav= username
   h1= title
   p Welcome to #{title}
   div.video_container
     video#cam_observer(autoplay=true)
-    pre#output
-      span.angry
-        label angry:
-        span.value
-      br
-      span.disgusted
-        label disgusted:
-        span.value
-      br
-      span.fearful
-        label fearul:
-        span.value
-      br
-      span.happy
-        label happy:
-        span.value
-      br
-      span.neutral
-        label neutral:
-        span.value
-      br
-      span.sad
-        label sad:
-        span.value
-      br
-      span.surprised
-        label surprised:
-        span.value
+    div.left_col
+      button#toggle_detection
+        span.start start
+        span.stop stop
+        span detection
+      pre#output
+        span.angry
+          label angry:
+          span.value
+        br
+        span.disgusted
+          label disgusted:
+          span.value
+        br
+        span.fearful
+          label fearul:
+          span.value
+        br
+        span.happy
+          label happy:
+          span.value
+        br
+        span.neutral
+          label neutral:
+          span.value
+        br
+        span.sad
+          label sad:
+          span.value
+        br
+        span.surprised
+          label surprised:
+          span.value
   canvas#video_out
   div#modal
     .content
