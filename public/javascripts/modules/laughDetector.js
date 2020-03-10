@@ -4,8 +4,8 @@ const listeners = [],
 
 function init(opts={}) {
 	const defaultOpts = {
-		happyThreshold: 0.02,
-		surprisedThreshold: 0.02
+		happyThreshold: 0.6,
+		surprisedThreshold: 0.6
 	};
 	for (const key in defaultOpts) {
 		if (!(key in opts)) {
