@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "@google-cloud/vision": "^1.9.0",
+    "bcrypt": "^4.0.1",
+    "client-sessions": "^0.8.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -14,6 +16,7 @@
     "face-api.js": "^0.22.1",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "mongodb": "^3.5.4",
     "morgan": "~1.9.0"
   }
 }

@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('client-sessions');
 var debug = require('debug')('lmmyl:app');
 var logger = require('morgan');
 
@@ -19,12 +20,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+	cookieName: 'session',
+	secret: process.env.LMMYL_COOKIE_SECRET,
+	duration: 30 * 60 * 1000,
+	activeDuration: 5 * 60 * 1000,
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/detect', detectionRouter);
 
+app.get('/login', (req, res, next) => res.render('login', { title: 'Login -- Let Me Make You Laugh!' }));
+app.get('/signup', (req, res, next) => res.render('signup', { title: 'Sign Up -- Let Me Make You Laugh!' }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
